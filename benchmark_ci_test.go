@@ -81,8 +81,8 @@ func TestCIBenchmarks(t *testing.T) {
 		5 * time.Millisecond,
 	}
 	for _, d := range sleepDurations {
-		hptStats := measureSleepOvershoot(200, d, func(d time.Duration) { Sleep(d) })
-		stdStats := measureSleepOvershoot(200, d, func(d time.Duration) { time.Sleep(d) })
+		hptStats := measureSleepOvershoot(1000, d, func(d time.Duration) { Sleep(d) })
+		stdStats := measureSleepOvershoot(1000, d, func(d time.Duration) { time.Sleep(d) })
 
 		report.Sleep = append(report.Sleep, ciSleepComparison{
 			Duration:   d.String(),
@@ -97,7 +97,7 @@ func TestCIBenchmarks(t *testing.T) {
 
 	// --- Ticker: hpt vs time.Ticker ---
 	tickerPeriod := 1 * time.Millisecond
-	tickerCount := 500
+	tickerCount := 2000
 
 	hptTk := measureTickerJitterFull(tickerCount, tickerPeriod, func(period time.Duration) (<-chan time.Time, func()) {
 		tk := NewTicker(period)
@@ -128,11 +128,11 @@ func TestCIBenchmarks(t *testing.T) {
 	// --- Timer: hpt vs time.Timer ---
 	timerDurations := []time.Duration{1 * time.Millisecond, 5 * time.Millisecond}
 	for _, d := range timerDurations {
-		hptStats := measureTimerOvershoot(100, d, func(d time.Duration) {
+		hptStats := measureTimerOvershoot(500, d, func(d time.Duration) {
 			timer := NewTimer(d)
 			<-timer.C
 		})
-		stdStats := measureTimerOvershoot(100, d, func(d time.Duration) {
+		stdStats := measureTimerOvershoot(500, d, func(d time.Duration) {
 			timer := time.NewTimer(d)
 			<-timer.C
 		})

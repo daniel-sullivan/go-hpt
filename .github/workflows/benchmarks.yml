@@ -41,7 +41,8 @@ jobs:
         env:
           BENCH_OUTPUT: ${{ matrix.name }}.json
           CGO_ENABLED: ${{ matrix.cgo }}
-        run: go test -run TestCIBenchmarks -v -count=1 -timeout=5m ./...
+        shell: bash
+        run: go test -run TestCIBenchmarks -v -count=1 -timeout=15m ./...
 
       - uses: actions/upload-artifact@v4
         with:
