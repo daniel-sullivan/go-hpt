@@ -1,0 +1,168 @@
+name: CI
+
+on:
+  push:
+    branches: [master, main]
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            platform: linux
+          - os: macos-latest
+            platform: macos
+          - os: windows-latest
+            platform: windows
+    runs-on: ${{ matrix.os }}
+    name: test (${{ matrix.platform }})
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Run tests with race detector and coverage
+        run: go test -v -short -race -coverprofile=coverage.out -covermode=atomic -count=1 ./...
+
+      - name: Print coverage summary
+        if: success()
+        run: go tool cover -func=coverage.out
+
+      - name: Vet
+        run: go vet ./...
+
+      - name: Upload coverage
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-${{ matrix.platform }}
+          path: coverage.out
+
+      - name: Report job status
+        if: always()
+        shell: bash
+        run: echo "${{ job.status }}" > status.txt
+
+      - name: Upload status
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: status-${{ matrix.platform }}
+          path: status.txt
+
+  update-badges:
+    needs: test
+    if: always() && github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Update badges
+        shell: python3 {0}
+        run: |
+          import os, re, subprocess
+
+          def read_file(path):
+              try:
+                  return open(path).read().strip()
+              except FileNotFoundError:
+                  return None
+
+          def coverage_pct(path):
+              if not os.path.exists(path):
+                  return None
+              result = subprocess.run(
+                  ["go", "tool", "cover", "-func=" + path],
+                  capture_output=True, text=True,
+              )
+              for line in result.stdout.splitlines():
+                  if line.startswith("total:"):
+                      return line.split()[-1].replace("%", "")
+              return None
+
+          def badge_color(pct):
+              try:
+                  v = float(pct)
+              except (TypeError, ValueError):
+                  return "grey"
+              if v >= 80: return "brightgreen"
+              if v >= 60: return "yellow"
+              if v >= 40: return "orange"
+              return "red"
+
+          def build_badge_url(label, value, color):
+              value = value.replace("-", "--").replace(" ", "_")
+              return f"https://img.shields.io/badge/{label}-{value}-{color}"
+
+          platforms = ["linux", "macos", "windows"]
+          readme = open("README.md").read()
+
+          # Map matrix platform names to badge label prefixes
+          badge_labels = {
+              "linux": "linux",
+              "macos": "macOS",
+              "windows": "windows",
+          }
+
+          for p in platforms:
+              label = badge_labels[p]
+
+              # --- Tests badge ---
+              status = read_file(f"artifacts/status-{p}/status.txt")
+              if status == "success":
+                  test_val, test_color = "passing", "brightgreen"
+              elif status == "failure":
+                  test_val, test_color = "failing", "red"
+              elif status == "cancelled":
+                  test_val, test_color = "cancelled", "grey"
+              else:
+                  test_val, test_color = "unknown", "grey"
+
+              test_url = build_badge_url(f"{label}_tests", test_val, test_color)
+              readme = re.sub(
+                  rf'!\[{p}: tests\]\([^)]*\)',
+                  f'![{p}: tests]({test_url})',
+                  readme,
+              )
+
+              # --- Coverage badge ---
+              cov = coverage_pct(f"artifacts/coverage-{p}/coverage.out")
+              if cov:
+                  cov_val = cov + "%25"  # URL-encode the %
+                  cov_color = badge_color(cov)
+              else:
+                  cov_val, cov_color = "unknown", "grey"
+
+              cov_url = build_badge_url(f"{label}_coverage", cov_val, cov_color)
+              readme = re.sub(
+                  rf'!\[{p}: coverage\]\([^)]*\)',
+                  f'![{p}: coverage]({cov_url})',
+                  readme,
+              )
+
+          open("README.md", "w").write(readme)
+          print("Badges updated")
+
+      - name: Commit updated badges
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git commit -m "docs: update CI badges [skip ci]"
+          git push

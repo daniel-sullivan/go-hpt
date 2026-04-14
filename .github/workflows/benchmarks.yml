@@ -1,0 +1,81 @@
+name: Benchmarks
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  benchmark:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: ubuntu-latest
+            name: linux-cgo
+            cgo: "1"
+          - os: ubuntu-latest
+            name: linux-nocgo
+            cgo: "0"
+          - os: macos-latest
+            name: darwin-cgo
+            cgo: "1"
+          - os: macos-latest
+            name: darwin-nocgo
+            cgo: "0"
+          - os: windows-latest
+            name: windows
+            cgo: "0"
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: go.mod
+
+      - name: Run benchmarks
+        env:
+          BENCH_OUTPUT: ${{ matrix.name }}.json
+          CGO_ENABLED: ${{ matrix.cgo }}
+        run: go test -run TestCIBenchmarks -v -count=1 -timeout=5m ./...
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: benchmark-${{ matrix.name }}
+          path: ${{ matrix.name }}.json
+
+  update-readme:
+    needs: benchmark
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/download-artifact@v4
+        with:
+          path: benchmark-results
+          merge-multiple: true
+
+      - name: List collected results
+        run: ls -la benchmark-results/
+
+      - name: Generate benchmark section
+        run: |
+          python3 .github/scripts/update-readme.py \
+            benchmark-results/linux-cgo.json \
+            benchmark-results/linux-nocgo.json \
+            benchmark-results/darwin-cgo.json \
+            benchmark-results/darwin-nocgo.json \
+            benchmark-results/windows.json
+
+      - name: Commit updated README
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          git diff --cached --quiet && echo "No changes to commit" && exit 0
+          git commit -m "docs: update benchmark results [skip ci]"
+          git push
