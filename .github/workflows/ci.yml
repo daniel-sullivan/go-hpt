@@ -138,8 +138,8 @@ jobs:
 
               test_url = build_badge_url(f"{label}_tests", test_val, test_color)
               readme = re.sub(
-                  rf'!\[{p}: tests\]\([^)]*\)',
-                  f'![{p}: tests]({test_url})',
+                  rf'<img src="[^"]*" alt="{p}: tests">',
+                  f'<img src="{test_url}" alt="{p}: tests">',
                   readme,
               )
 
@@ -153,8 +153,8 @@ jobs:
 
               cov_url = build_badge_url(f"{label}_coverage", cov_val, cov_color)
               readme = re.sub(
-                  rf'!\[{p}: coverage\]\([^)]*\)',
-                  f'![{p}: coverage]({cov_url})',
+                  rf'<img src="[^"]*" alt="{p}: coverage">',
+                  f'<img src="{cov_url}" alt="{p}: coverage">',
                   readme,
               )
 

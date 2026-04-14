@@ -108,8 +108,12 @@ func TestTickerPeriod(t *testing.T) {
 		now := monotonicNow()
 		if i > 0 {
 			interval := time.Duration(now - lastNano)
-			// Allow 2ms tolerance.
-			if interval < period-2*time.Millisecond || interval > period+2*time.Millisecond {
+			// Per-tick intervals include Go channel delivery jitter (goroutine
+			// scheduling between the timer firing and the test reading C). A
+			// delayed tick shortens the *next* measured interval. Total accuracy
+			// is validated by TestTickerDrift; this test guards against gross
+			// errors like wrong period or stuck ticker.
+			if interval < period-4*time.Millisecond || interval > period+4*time.Millisecond {
 				t.Errorf("tick %d: interval %v, expected ~%v", i, interval, period)
 			}
 		}
