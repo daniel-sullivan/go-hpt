@@ -1,10 +1,10 @@
 <p align="center">
-  ![linux: tests](https://img.shields.io/badge/linux_tests-unknown-grey)
-  ![linux: coverage](https://img.shields.io/badge/linux_coverage-unknown-grey)
-  ![macos: tests](https://img.shields.io/badge/macOS_tests-unknown-grey)
+  ![linux: tests](https://img.shields.io/badge/linux_tests-passing-brightgreen)
+  ![linux: coverage](https://img.shields.io/badge/linux_coverage-82.7%25-brightgreen)
+  ![macos: tests](https://img.shields.io/badge/macOS_tests-failing-red)
   ![macos: coverage](https://img.shields.io/badge/macOS_coverage-unknown-grey)
-  ![windows: tests](https://img.shields.io/badge/windows_tests-unknown-grey)
-  ![windows: coverage](https://img.shields.io/badge/windows_coverage-unknown-grey)
+  ![windows: tests](https://img.shields.io/badge/windows_tests-passing-brightgreen)
+  ![windows: coverage](https://img.shields.io/badge/windows_coverage-87.1%25-brightgreen)
   <br><img src="logo.png" alt="hpt logo" width="450">
 </p>
 
