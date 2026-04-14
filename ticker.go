@@ -39,7 +39,9 @@ func NewTicker(d time.Duration) *Ticker {
 		C: c,
 		c: c,
 	}
-	t.stopFn = startTickerLoop(d, c)
+	threadStarted()
+	raw := startTickerLoop(d, c)
+	t.stopFn = func() { raw(); threadStopped() }
 	return t
 }
 
@@ -70,5 +72,7 @@ func (t *Ticker) Reset(d time.Duration) {
 		t.stopFn()
 	}
 	t.stopped = false
-	t.stopFn = startTickerLoop(d, t.c)
+	threadStarted()
+	raw := startTickerLoop(d, t.c)
+	t.stopFn = func() { raw(); threadStopped() }
 }

@@ -113,6 +113,9 @@ func (t *Timer) Reset(d time.Duration) bool {
 // run is the timer goroutine. It captures c, f, done, and resetCh as local
 // values to avoid races with Stop/Reset which modify the struct under the mutex.
 func (t *Timer) run(d time.Duration, c chan time.Time, f func(), done <-chan struct{}, resetCh <-chan time.Duration) {
+	threadStarted()
+	defer threadStopped()
+
 	runtime.LockOSThread()
 	defer runtime.UnlockOSThread()
 

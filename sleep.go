@@ -19,6 +19,9 @@ func Sleep(d time.Duration) {
 		return
 	}
 
+	threadStarted()
+	defer threadStopped()
+
 	runtime.LockOSThread()
 	defer runtime.UnlockOSThread()
 
