@@ -156,221 +156,221 @@ Lower is better for all metrics. Impr. = how many times more precise `hpt` is vs
 <tr>
   <th rowspan="4" align="left">Sleep</th>
   <td><b>100µs</b></td>
-  <td><code>64.459µs</code></td>
-  <td><code>973.335µs</code></td>
-  <td><b>15.1x</b></td>
-  <td><code>58.511µs</code></td>
-  <td><code>965.575µs</code></td>
-  <td><b>16.5x</b></td>
-  <td><code>17.299µs</code></td>
-  <td><code>79.207µs</code></td>
-  <td><b>4.6x</b></td>
-  <td><code>946ns</code></td>
-  <td><code>81.075µs</code></td>
-  <td><b>85.7x</b></td>
-  <td><code>498.603µs</code></td>
-  <td><code>472.166µs</code></td>
-  <td><b>0.9x</b></td>
+  <td><code>58.732µs</code></td>
+  <td><code>973.334µs</code></td>
+  <td><b>16.6x</b></td>
+  <td><code>59.707µs</code></td>
+  <td><code>964.487µs</code></td>
+  <td><b>16.2x</b></td>
+  <td><code>127ns</code></td>
+  <td><code>98.672µs</code></td>
+  <td><b>776.9x</b></td>
+  <td><code>11.223µs</code></td>
+  <td><code>98.626µs</code></td>
+  <td><b>8.8x</b></td>
+  <td><code>435.362µs</code></td>
+  <td><code>455.777µs</code></td>
+  <td><b>1.0x</b></td>
 </tr>
 <tr>
   <td><b>500µs</b></td>
-  <td><code>68.667µs</code></td>
-  <td><code>573.453µs</code></td>
-  <td><b>8.4x</b></td>
-  <td><code>63.111µs</code></td>
-  <td><code>566.916µs</code></td>
+  <td><code>68.71µs</code></td>
+  <td><code>572.923µs</code></td>
+  <td><b>8.3x</b></td>
+  <td><code>62.443µs</code></td>
+  <td><code>563.593µs</code></td>
   <td><b>9.0x</b></td>
-  <td><code>98.478µs</code></td>
-  <td><code>314.287µs</code></td>
-  <td><b>3.2x</b></td>
-  <td><code>64.735µs</code></td>
-  <td><code>136.98µs</code></td>
-  <td><b>2.1x</b></td>
-  <td><code>358.309µs</code></td>
-  <td><code>476.678µs</code></td>
-  <td><b>1.3x</b></td>
+  <td><code>36.585µs</code></td>
+  <td><code>226.733µs</code></td>
+  <td><b>6.2x</b></td>
+  <td><code>100.167µs</code></td>
+  <td><code>242.523µs</code></td>
+  <td><b>2.4x</b></td>
+  <td><code>267.38µs</code></td>
+  <td><code>528.839µs</code></td>
+  <td><b>2.0x</b></td>
 </tr>
 <tr>
   <td><b>1ms</b></td>
-  <td><code>69.404µs</code></td>
-  <td><code>72.92µs</code></td>
-  <td><b>1.1x</b></td>
-  <td><code>61.707µs</code></td>
-  <td><code>71.265µs</code></td>
-  <td><b>1.2x</b></td>
-  <td><code>269.62µs</code></td>
-  <td><code>569.735µs</code></td>
-  <td><b>2.1x</b></td>
-  <td><code>289.169µs</code></td>
-  <td><code>633.944µs</code></td>
-  <td><b>2.2x</b></td>
-  <td><code>435.976µs</code></td>
-  <td><code>543.092µs</code></td>
-  <td><b>1.2x</b></td>
+  <td><code>73.359µs</code></td>
+  <td><code>75.358µs</code></td>
+  <td><b>1.0x</b></td>
+  <td><code>63.515µs</code></td>
+  <td><code>65.688µs</code></td>
+  <td><b>1.0x</b></td>
+  <td><code>213.257µs</code></td>
+  <td><code>549.137µs</code></td>
+  <td><b>2.6x</b></td>
+  <td><code>218.606µs</code></td>
+  <td><code>492.894µs</code></td>
+  <td><b>2.3x</b></td>
+  <td><code>397.799µs</code></td>
+  <td><code>531.736µs</code></td>
+  <td><b>1.3x</b></td>
 </tr>
 <tr>
   <td><b>5ms</b></td>
-  <td><code>99.311µs</code></td>
-  <td><code>161.672µs</code></td>
-  <td><b>1.6x</b></td>
-  <td><code>72.848µs</code></td>
-  <td><code>135.932µs</code></td>
-  <td><b>1.9x</b></td>
-  <td><code>1.447788ms</code></td>
-  <td><code>1.608308ms</code></td>
+  <td><code>88.42µs</code></td>
+  <td><code>184.828µs</code></td>
+  <td><b>2.1x</b></td>
+  <td><code>91.363µs</code></td>
+  <td><code>162.293µs</code></td>
+  <td><b>1.8x</b></td>
+  <td><code>281.193µs</code></td>
+  <td><code>1.512953ms</code></td>
+  <td><b>5.4x</b></td>
+  <td><code>705.748µs</code></td>
+  <td><code>1.64895ms</code></td>
+  <td><b>2.3x</b></td>
+  <td><code>262.587µs</code></td>
+  <td><code>296.238µs</code></td>
   <td><b>1.1x</b></td>
-  <td><code>1.051338ms</code></td>
-  <td><code>1.754206ms</code></td>
-  <td><b>1.7x</b></td>
-  <td><code>294.031µs</code></td>
-  <td><code>264.232µs</code></td>
-  <td><b>0.9x</b></td>
 </tr>
 <tr>
   <th rowspan="6" align="left">Ticker</th>
   <td><b>Median jitter</b></td>
-  <td><code>2.98µs</code></td>
-  <td><code>88.784µs</code></td>
+  <td><code>8.342µs</code></td>
+  <td><code>86.684µs</code></td>
   <td>—</td>
-  <td><code>3.875µs</code></td>
-  <td><code>70.673µs</code></td>
+  <td><code>2.455µs</code></td>
+  <td><code>73.227µs</code></td>
   <td>—</td>
-  <td><code>28.042µs</code></td>
-  <td><code>72.708µs</code></td>
+  <td><code>3.625µs</code></td>
+  <td><code>8.75µs</code></td>
   <td>—</td>
-  <td><code>13µs</code></td>
-  <td><code>139µs</code></td>
+  <td><code>24µs</code></td>
+  <td><code>72µs</code></td>
   <td>—</td>
-  <td><code>62.5µs</code></td>
-  <td><code>108.9µs</code></td>
+  <td><code>55µs</code></td>
+  <td><code>98.2µs</code></td>
   <td>—</td>
 </tr>
 <tr>
   <td><b>Mean jitter</b></td>
-  <td><code>4.345µs</code></td>
-  <td><code>99.952µs</code></td>
-  <td><b>23.0x</b></td>
-  <td><code>17.08µs</code></td>
-  <td><code>88.599µs</code></td>
-  <td><b>5.2x</b></td>
-  <td><code>72.192µs</code></td>
-  <td><code>109.851µs</code></td>
-  <td><b>1.5x</b></td>
-  <td><code>186.519µs</code></td>
-  <td><code>158.647µs</code></td>
-  <td><b>0.9x</b></td>
-  <td><code>161.256µs</code></td>
-  <td><code>209.302µs</code></td>
-  <td><b>1.3x</b></td>
+  <td><code>7.456µs</code></td>
+  <td><code>109.122µs</code></td>
+  <td><b>14.6x</b></td>
+  <td><code>3.153µs</code></td>
+  <td><code>88.767µs</code></td>
+  <td><b>28.2x</b></td>
+  <td><code>14.462µs</code></td>
+  <td><code>81.149µs</code></td>
+  <td><b>5.6x</b></td>
+  <td><code>141.969µs</code></td>
+  <td><code>113.3µs</code></td>
+  <td><b>0.8x</b></td>
+  <td><code>143.174µs</code></td>
+  <td><code>206.33µs</code></td>
+  <td><b>1.4x</b></td>
 </tr>
 <tr>
   <td><b>p95 jitter</b></td>
-  <td><code>12.514µs</code></td>
-  <td><code>107.199µs</code></td>
+  <td><code>16.891µs</code></td>
+  <td><code>128.983µs</code></td>
   <td>—</td>
-  <td><code>24.261µs</code></td>
-  <td><code>93.167µs</code></td>
+  <td><code>6.626µs</code></td>
+  <td><code>85.526µs</code></td>
   <td>—</td>
-  <td><code>302.125µs</code></td>
-  <td><code>350.75µs</code></td>
+  <td><code>43.916µs</code></td>
+  <td><code>220.083µs</code></td>
   <td>—</td>
-  <td><code>426µs</code></td>
-  <td><code>357µs</code></td>
+  <td><code>680µs</code></td>
+  <td><code>358µs</code></td>
   <td>—</td>
-  <td><code>549.5µs</code></td>
-  <td><code>572.8µs</code></td>
+  <td><code>541.5µs</code></td>
+  <td><code>562.6µs</code></td>
   <td>—</td>
 </tr>
 <tr>
   <td><b>p99 jitter</b></td>
-  <td><code>39.742µs</code></td>
-  <td><code>969.311µs</code></td>
-  <td><b>24.4x</b></td>
-  <td><code>454.933µs</code></td>
-  <td><code>986.25µs</code></td>
-  <td><b>2.2x</b></td>
-  <td><code>438.75µs</code></td>
-  <td><code>507.417µs</code></td>
-  <td><b>1.2x</b></td>
-  <td><code>1ms</code></td>
-  <td><code>542µs</code></td>
-  <td><b>0.5x</b></td>
-  <td><code>600.9µs</code></td>
-  <td><code>600.8µs</code></td>
+  <td><code>19.336µs</code></td>
+  <td><code>982.831µs</code></td>
+  <td><b>50.8x</b></td>
+  <td><code>20.693µs</code></td>
+  <td><code>981.847µs</code></td>
+  <td><b>47.4x</b></td>
+  <td><code>120.25µs</code></td>
+  <td><code>1.050166ms</code></td>
+  <td><b>8.7x</b></td>
+  <td><code>1.7ms</code></td>
+  <td><code>470µs</code></td>
+  <td><b>0.3x</b></td>
+  <td><code>594.4µs</code></td>
+  <td><code>594µs</code></td>
   <td><b>1.0x</b></td>
 </tr>
 <tr>
   <td><b>Max jitter</b></td>
-  <td><code>46.668µs</code></td>
-  <td><code>999.279µs</code></td>
+  <td><code>37.254µs</code></td>
+  <td><code>999.308µs</code></td>
   <td>—</td>
-  <td><code>2.455565ms</code></td>
-  <td><code>998.578µs</code></td>
+  <td><code>47.79µs</code></td>
+  <td><code>987.597µs</code></td>
   <td>—</td>
-  <td><code>486.458µs</code></td>
-  <td><code>552.625µs</code></td>
+  <td><code>999.375µs</code></td>
+  <td><code>12.592917ms</code></td>
   <td>—</td>
-  <td><code>23.254ms</code></td>
-  <td><code>1.612ms</code></td>
+  <td><code>12.053ms</code></td>
+  <td><code>1.359ms</code></td>
   <td>—</td>
-  <td><code>876.8µs</code></td>
-  <td><code>635.6µs</code></td>
+  <td><code>885.9µs</code></td>
+  <td><code>990.6µs</code></td>
   <td>—</td>
 </tr>
 <tr>
   <td><b>Total drift</b></td>
-  <td><code>1.027466ms</code></td>
-  <td><code>34.354596ms</code></td>
+  <td><code>1.025068ms</code></td>
+  <td><code>31.037032ms</code></td>
   <td>—</td>
-  <td><code>1.083738ms</code></td>
-  <td><code>26.579038ms</code></td>
+  <td><code>84.265µs</code></td>
+  <td><code>26.702754ms</code></td>
   <td>—</td>
-  <td><code>942.458µs</code></td>
-  <td><code>304.667µs</code></td>
+  <td><code>1.012084ms</code></td>
+  <td><code>20.187042ms</code></td>
   <td>—</td>
-  <td><code>44.283ms</code></td>
-  <td><code>1.517ms</code></td>
+  <td><code>16.026ms</code></td>
+  <td><code>1.56ms</code></td>
   <td>—</td>
-  <td><code>190.5µs</code></td>
-  <td><code>347.3µs</code></td>
+  <td><code>430.5µs</code></td>
+  <td><code>550.9µs</code></td>
   <td>—</td>
 </tr>
 <tr>
   <th rowspan="2" align="left">Timer</th>
   <td><b>1ms</b></td>
-  <td><code>74.082µs</code></td>
-  <td><code>73.964µs</code></td>
+  <td><code>78.254µs</code></td>
+  <td><code>72.738µs</code></td>
+  <td><b>0.9x</b></td>
+  <td><code>66.809µs</code></td>
+  <td><code>66.667µs</code></td>
   <td><b>1.0x</b></td>
-  <td><code>66.324µs</code></td>
-  <td><code>69.875µs</code></td>
-  <td><b>1.1x</b></td>
-  <td><code>168.156µs</code></td>
-  <td><code>326.624µs</code></td>
-  <td><b>1.9x</b></td>
-  <td><code>193.522µs</code></td>
-  <td><code>392.66µs</code></td>
-  <td><b>2.0x</b></td>
-  <td><code>515.822µs</code></td>
-  <td><code>524.562µs</code></td>
+  <td><code>17.724µs</code></td>
+  <td><code>275.081µs</code></td>
+  <td><b>15.5x</b></td>
+  <td><code>278.838µs</code></td>
+  <td><code>420.987µs</code></td>
+  <td><b>1.5x</b></td>
+  <td><code>534.891µs</code></td>
+  <td><code>519.114µs</code></td>
   <td><b>1.0x</b></td>
 </tr>
 <tr>
   <td><b>5ms</b></td>
-  <td><code>98.947µs</code></td>
-  <td><code>149.217µs</code></td>
-  <td><b>1.5x</b></td>
-  <td><code>74.336µs</code></td>
-  <td><code>134.602µs</code></td>
+  <td><code>115.54µs</code></td>
+  <td><code>213.6µs</code></td>
   <td><b>1.8x</b></td>
-  <td><code>325.807µs</code></td>
-  <td><code>1.836912ms</code></td>
-  <td><b>5.6x</b></td>
-  <td><code>806.946µs</code></td>
-  <td><code>2.010489ms</code></td>
-  <td><b>2.5x</b></td>
-  <td><code>374.834µs</code></td>
-  <td><code>321.982µs</code></td>
-  <td><b>0.9x</b></td>
+  <td><code>74.893µs</code></td>
+  <td><code>168.593µs</code></td>
+  <td><b>2.3x</b></td>
+  <td><code>435.64µs</code></td>
+  <td><code>1.524988ms</code></td>
+  <td><b>3.5x</b></td>
+  <td><code>840.919µs</code></td>
+  <td><code>1.198806ms</code></td>
+  <td><b>1.4x</b></td>
+  <td><code>375.96µs</code></td>
+  <td><code>299.393µs</code></td>
+  <td><b>0.8x</b></td>
 </tr>
 </table>
 
