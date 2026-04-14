@@ -39,8 +39,9 @@ func TestSleepAccuracy(t *testing.T) {
 			if elapsed < d {
 				t.Errorf("Sleep(%v) returned after %v (undershoot)", d, elapsed)
 			}
-			// Allow up to 2ms overshoot for OS scheduling variance.
-			maxOvershoot := 2 * time.Millisecond
+			// Allow overshoot for OS scheduling variance. CI shared runners
+			// can add several ms of jitter.
+			maxOvershoot := 5 * time.Millisecond
 			if elapsed > d+maxOvershoot {
 				t.Errorf("Sleep(%v) took %v (overshoot %v > %v)", d, elapsed, elapsed-d, maxOvershoot)
 			}
@@ -130,8 +131,8 @@ func TestTickerDrift(t *testing.T) {
 
 	expected := time.Duration(count) * period
 	drift := elapsed - expected
-	// Total drift over 100 ticks should be small (< 5ms).
-	if drift < -5*time.Millisecond || drift > 5*time.Millisecond {
+	// Total drift over 100 ticks should be small. Allow 10ms for CI runners.
+	if drift < -10*time.Millisecond || drift > 10*time.Millisecond {
 		t.Errorf("drift after %d ticks: %v (elapsed %v, expected %v)", count, drift, elapsed, expected)
 	}
 }

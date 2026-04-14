@@ -168,4 +168,5 @@ jobs:
           git add README.md
           git diff --cached --quiet && echo "No changes to commit" && exit 0
           git commit -m "docs: update CI badges [skip ci]"
+          git pull --rebase
           git push
