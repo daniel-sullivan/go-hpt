@@ -23,16 +23,14 @@ func sleepUntil(deadline int64) {
 		}
 
 		if remaining < 100_000 { // 100us: busy-spin
-			for monotonicNow() < deadline {
-			}
+			spinUntil(deadline)
 			return
 		}
 
 		// kevent with EVFILT_TIMER for kernel-level precision.
 		kq, err := unix.Kqueue()
 		if err != nil {
-			for monotonicNow() < deadline {
-			}
+			spinUntil(deadline)
 			return
 		}
 
@@ -52,8 +50,7 @@ func sleepUntil(deadline int64) {
 		_, _ = unix.Kevent(kq, []unix.Kevent_t{kevt}, events, nil)
 		_ = unix.Close(kq)
 
-		for monotonicNow() < deadline {
-		}
+		spinUntil(deadline)
 		return
 	}
 }

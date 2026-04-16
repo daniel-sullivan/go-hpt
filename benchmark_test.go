@@ -5,11 +5,29 @@ import (
 	"sort"
 	"testing"
 	"time"
+
+	"github.com/daniel-sullivan/go-hpt/internal/counter"
 )
 
 func BenchmarkMonotonicNow(b *testing.B) {
 	for b.Loop() {
 		monotonicNow()
+	}
+}
+
+func BenchmarkCounterRead(b *testing.B) {
+	if !counterReady {
+		b.Skip("CPU counter not available")
+	}
+
+	for b.Loop() {
+		counter.Read()
+	}
+}
+
+func BenchmarkSpinUntil1us(b *testing.B) {
+	for b.Loop() {
+		spinUntil(monotonicNow() + 1000)
 	}
 }
 

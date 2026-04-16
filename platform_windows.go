@@ -98,8 +98,7 @@ func sleepUntilHighRes(deadline int64) {
 	procWaitForSingleObject.Call(h, infinite)
 
 	// Busy-spin for any remainder.
-	for monotonicNow() < deadline {
-	}
+	spinUntil(deadline)
 }
 
 func sleepUntilFallback(deadline int64) {
@@ -111,8 +110,7 @@ func sleepUntilFallback(deadline int64) {
 		if remaining > 2_000_000 { // > 2ms
 			time.Sleep(time.Duration(remaining - 1_500_000))
 		} else {
-			for monotonicNow() < deadline {
-			}
+			spinUntil(deadline)
 			return
 		}
 	}
