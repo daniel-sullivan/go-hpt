@@ -153,8 +153,7 @@ def generate_markdown(reports):
     lines = []
 
     now = datetime.now(timezone.utc).strftime("%Y-%m-%d")
-    lines.append(f"> Auto-generated on {now} by CI &mdash; "
-                 f"[view workflow](../../actions/workflows/benchmarks.yml)")
+    lines.append(f"> Generated on {now} &mdash; `mise run benchmarks`")
     lines.append("")
     lines.append("Lower is better for all metrics. "
                  "Impr. = how many times more precise `hpt` is vs `time`. "

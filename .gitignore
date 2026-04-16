@@ -21,8 +21,7 @@ coverage.out
 Thumbs.db
 
 # Benchmark artifacts
-*.json
-!go.sum
+.bench-results/
 
 # Claude Code
 .claude/

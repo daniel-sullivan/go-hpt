@@ -1,0 +1,22 @@
+[tasks.benchmarks]
+description = "Run benchmarks (cgo + no-cgo) and update README"
+run = """
+set -e
+mkdir -p .bench-results
+rm -f .bench-results/*.json
+
+echo "==> Running benchmarks (cgo enabled)..."
+go run ./cmd/bench -json .bench-results/darwin-cgo.json
+
+echo ""
+echo "==> Running benchmarks (cgo disabled)..."
+CGO_ENABLED=0 go run ./cmd/bench -json .bench-results/darwin-nocgo.json
+
+echo ""
+echo "==> Updating README..."
+python3 .github/scripts/update-readme.py \
+    .bench-results/darwin-cgo.json \
+    .bench-results/darwin-nocgo.json
+
+echo "Done. Review the diff with: git diff README.md"
+"""
