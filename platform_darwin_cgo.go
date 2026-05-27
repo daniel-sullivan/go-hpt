@@ -111,7 +111,9 @@ static void* hpt_ticker_thread(void* arg) {
 
 		if (atomic_load(&t->stop)) break;
 		char b = 1;
-		write(t->pipe_w, &b, 1);
+		// write() may be declared warn_unused_result; capture and discard.
+		ssize_t wr = write(t->pipe_w, &b, 1);
+		(void)wr;
 	}
 
 	if (kq >= 0) close(kq);

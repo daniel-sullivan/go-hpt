@@ -41,7 +41,9 @@ static void* hpt_ticker_thread(void* arg) {
 		hpt_sleep_until_impl(t->start_ns + tick * t->period_ns);
 		if (atomic_load(&t->stop)) break;
 		char b = 1;
-		write(t->pipe_w, &b, 1);
+		// glibc declares write() with warn_unused_result; capture and discard.
+		ssize_t wr = write(t->pipe_w, &b, 1);
+		(void)wr;
 	}
 	close(t->pipe_w);
 	return NULL;
